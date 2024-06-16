@@ -1,0 +1,6 @@
+**/*.exe
+dist/**
+gta2man
+gta2man.exe
+tests/tester
+tests/tester.exe
