@@ -9,17 +9,58 @@ help:
 
 # {{{ Build
 INPUTS := \
+	./compile.nim \
 	./config.nim \
+	./edit.nim \
+	./facts.nim \
+	./gui.nim \
 	./main.nim \
 	./mmpfile.nim \
 	./parseini.nim \
-	./sync_maps.nim \
+	./quickstart.nim \
+	./res/gta2man.res \
 	./utils.nim \
 	./validator_name.nim \
+	./various.nim \
 
+./res/gta2man.res: ./res/gta2man.rc ./res/gta2man.ico ./res/gta2man.manifest
+	i686-w64-mingw32-windres -O coff ./res/gta2man.rc -o ./res/gta2man.res
+
+build: PHONY ./gta2man.exe ## build
 ./gta2man.exe: $(INPUTS)
 	args=(
 		\--cpu:i386 
+		\--threads:on
+		\-d:mingw 
+		
+		\-d:release 
+		\--stackTrace:on
+		\--lineTrace:on
+		\-d:strip 
+		\--opt:size
+	)
+	set -x
+	nim c "$${args[@]}" --out:"gta2man.exe" ./main.nim
+
+clean: PHONY ## clean outputs
+	rm -f \
+		./main.exe \
+		./gta2man.exe \
+		./tests/tester.exe
+
+./tests/tester.exe: $(INPUTS) ./tests/tester.nim
+	nim c --cpu:i386 -d:mingw --stackTrace:on --lineTrace:on ./tests/tester.nim
+
+test: PHONY ./tests/tester.exe ## test
+	wine ./tests/tester.exe
+
+# --- --- --- --- --- --- --- --- ---
+
+compile: PHONY ./compile.exe ## compile
+./compile.exe: ./compile.nim
+	args=(
+		\--cpu:i386 
+		\--threads:on
 		\-d:mingw 
 		
 		\-d:release 
@@ -27,21 +68,7 @@ INPUTS := \
 		\--opt:size
 	)
 	set -x
-	nim c "$${args[@]}" --out:"gta2man.exe" ./main.nim
+	nim c "$${args[@]}" --out:"compile.exe" ./compile.nim
 
-.PHONY: build
-build: ./gta2man.exe ## build
-
-./tests/tester.exe: $(INPUTS) ./tests/tester.nim
-	nim c --cpu:i386 -d:mingw ./tests/tester.nim
-
-.PHONY: test
-test: ./tests/tester.exe ## test
-	wine ./tests/tester.exe
-
-.PHONY: clean
-clean: ## clean outputs
-	rm -f \
-		./main.exe \
-		./gta2man.exe \
-		./tests/tester.exe
+PHONY:
+.PHONY: PHONY

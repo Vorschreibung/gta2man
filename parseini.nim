@@ -1,6 +1,14 @@
 # copied from stdlib: nim-1.6.8/lib/pure/parsecfg.nim
 # and then modified to match "plain"/"pure" .ini behavior
 #
+# @TODO Implement `Tags[]`
+#
+# e.g.:
+#
+#   [Map]
+#   Tags[] = train
+#   Tags[] = battle
+#
 ## Here is an example of how to use the configuration file parser:
 runnableExamples("-r:off"):
   import std/[strutils, streams]
@@ -151,7 +159,7 @@ runnableExamples:
   assert dict.getSectionValue(section4, "purpose") == "formatting for readability"
 
 import strutils, lexbase, streams, tables
-import std/private/decode_helpers
+# import std/private/decode_helpers
 import std/private/since
 
 include "system/inclrtl"
