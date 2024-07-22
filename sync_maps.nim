@@ -1,5 +1,7 @@
 import netty
 
+# @TODO
+
 proc server*() =
   # listen for a connection on localhost port 1999
   var server = newReactor("127.0.0.1", 1999)

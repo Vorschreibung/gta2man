@@ -88,7 +88,8 @@ PlayArea = 105 107 185 201
 [Client]
 show_player_names = true
 lighting = noon
-  """
+  """,
+  ""
   )
   check toBeauJson(mmp) == """{
   "mmpVersion": 0,
@@ -111,7 +112,8 @@ lighting = noon
   GMPFile = map-bernaar-map.gmp
   [MapFiles]
   GMPFile = map-bernaar-map.gmp
-    """
+    """,
+    ""
     )
   check lastException.msg == "Already parsed section: MapFiles"
 

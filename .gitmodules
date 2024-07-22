@@ -1,0 +1,40 @@
+[submodule "vendor/argparse-4.0.1"]
+	path = vendor/argparse-4.0.1
+	url = https://github.com/iffy/nim-argparse.git
+	branch = v4.0.1
+[submodule "vendor/checksums"]
+	path = vendor/checksums
+	url = https://github.com/nim-lang/checksums.git
+	branch = 7ff0b762332d2591bbeb65df9bb86d52ea44ec01
+[submodule "vendor/memlib-1.3.0"]
+	path = vendor/memlib-1.3.0
+	url = https://github.com/khchen/memlib.git
+	branch = 0c46ef5e803160a9eab867d5ba0fcdb307aaa492
+[submodule "vendor/nim-registry-2.1.0"]
+	path = vendor/nim-registry-2.1.0
+	url = https://github.com/miere43/nim-registry.git
+	branch = v2.1.0
+[submodule "vendor/nim-miniz"]
+	path = vendor/nim-miniz
+	url = https://github.com/Vorschreibung/nim-miniz.git
+	branch = main
+[submodule "vendor/npeg-1.2.2"]
+	path = vendor/npeg-1.2.2
+	url = https://github.com/zevv/npeg.git
+	branch = 1.2.2
+[submodule "vendor/wauto-1.3.0"]
+	path = vendor/wauto-1.3.0
+	url = https://github.com/khchen/wAuto.git
+	branch = a753426d25636601e439df993fe652ec8a82681f
+[submodule "vendor/winim-3.9.4"]
+	path = vendor/winim-3.9.4
+	url = https://github.com/khchen/winim.git
+	branch = 3.9.4
+[submodule "vendor/wnim-1.0.0"]
+	path = vendor/wnim-1.0.0
+	url = https://github.com/khchen/wNim.git
+	branch = 1.0.0
+[submodule "vendor/yaml-2.1.1"]
+	path = vendor/yaml-2.1.1
+	url = https://github.com/flyx/NimYAML.git
+	branch = v2.1.1
