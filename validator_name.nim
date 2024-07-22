@@ -14,7 +14,7 @@ const allowedCharacters =
 
 type
   ValidatePlayerNameResult* = object
-    violations*: uint8
+    violations*: uint8 # number of violations
     lenViolation*: bool
     actualLen*: int
     allowedLen*: int

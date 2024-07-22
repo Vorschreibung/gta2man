@@ -1,6 +1,10 @@
 **/*.exe
 dist/**
+game/**
+gta2-scr-decompiler/**
 gta2man
+gta2man-cfg.yaml*
 gta2man.exe
+res/gta2man.res
 tests/tester
 tests/tester.exe

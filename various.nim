@@ -1,6 +1,16 @@
-import osproc
-import streams
-import strtabs
+import checksums/md5
+import std/net
+import std/os
+import std/osproc
+import std/streams
+import std/strtabs
+
+import wAuto as wAuto
+from winim/lean import GetTickCount, discardable
+
+proc echoErr*(msg: string) =
+  writeLine(stderr, "> " & msg)
+  flushFile(stderr)
 
 # mostly copied from https://github.com/nim-lang/Nim/blob/version-1-6/lib/pure/osproc.nim#L1575 but supports passing args and skips shell
 proc sh*(
@@ -43,3 +53,45 @@ proc sh*(
       if result[1] != -1: break
   close(p)
 
+proc md5FromFile(path: string): MD5Digest =
+  discard
+
+proc waitForGta2Host*(ip: string, shouldStop: var bool): bool =
+  let socket = newSocket()
+  while true:
+    try:
+      if shouldStop:
+        return true
+
+      socket.connect(ip, Port(2300), timeout=400)
+      socket.close()
+      return false
+    except TimeoutError:
+      discard # noop
+    except Exception:
+      discard
+    os.sleep(200)
+
+template wAutoProcWaitAny*(process: wAuto.Process, condition: untyped, timeout: untyped = 0): untyped =
+  block:
+    var
+      timer = GetTickCount()
+      window {.inject.}: wAuto.Window
+      found = false
+
+    while not found:
+      for win in process.allWindows():
+        window = win
+        if condition:
+          found = true
+          break
+
+      sleep(35)
+      if timeout != 0 and (GetTickCount() -% timer) > timeout * 1000:
+        window = wAuto.Window 0
+        break
+
+    discardable window
+
+template SendMessage*(hwnd, msg, wparam, lparam: typed): untyped =
+  SendMessage(hwnd, msg, cast[WPARAM](wparam), cast[LPARAM](lparam))

@@ -4,7 +4,7 @@ GTA2 GMP map file format
 GBH Map Format  
 Version 8.2  
 18th August 1999  
-1997-1999 DMA Design Ltd  
+©1997-1999 DMA Design Ltd  
 
 [TOC]
 
@@ -42,8 +42,8 @@ struct block_info
 
 Within this, the _arrows_ bitmap looks like this:
 
-|     |     |
-| --- | --- |
+| Bits  | Notes |
+| ---   | ---   |
 | bit 0 | green left |
 | bit 1 | green right |
 | bit 2 | green up |
@@ -61,10 +61,10 @@ Note that green and red arrows do not have to be on road. It is allowed to place
 
 The _slope_type_ bitmap looks like this:
 
-|     |     |
-| --- | --- |
-| bits 0-1 | ground type  <br>( 0 = air, 1 = road, 2 = pavement, 3 = field ) |
-| bits 2-7 | slope type <br>(0 = none  <br>1- 2 = up 26 low, high  <br>3 – 4 = down 26 low, high5 – 6 = left 26 low, high  <br>7 – 8 = right 26 low, high  <br>9 – 16 = up 7 low – high17 – 24 = down 7 low – high  <br>25 – 32 = left 7 low – high  <br>33 – 40 = right 7 low – high<br><br>41 – 44 = 45up,down,left,right<br><br>45 = diagonal, facing up left<br><br>46 = diagonal, facing up right<br><br>47 = diagonal, facing down left<br><br>48 = diagonal, facing down right<br><br>49 = 3 or 4-sided diagonal slope, facing up left  <br>50 = 3 or 4-sided diagonal slope, facing up right  <br>51 = 3 or 4-sided diagonal slope, facing down left  <br>52 = 3 or 4-sided diagonal slope, facing down right<br><br>53 = partial block left<br><br>54 = partial block right<br><br>55 = partial block top<br><br>56 = partial block bottom<br><br>57 = partial block top left corner<br><br>58 = partial block top right corner<br><br>59 = partial block bottom right corner<br><br>60 = partial block bottom left corner<br><br>61 = partial centre block 16×16<br><br>62 = reserved for future use  <br>63 = indicates slope in block above ) |
+| Bits     | Notes |
+| ---      | ---   |
+| bits 0-1 | ground type<br>( 0 = air, 1 = road, 2 = pavement, 3 = field ) |
+| bits 2-7 | slope type <br>(0 = none,  <br>1 – 2 = up 26 low, high  <br>3 – 4 = down 26 low, high<br>5 – 6 = left 26 low, high  <br>7 – 8 = right 26 low, high  <br>9 – 16 = up 7 low – high<br>17 – 24 = down 7 low – high  <br>25 – 32 = left 7 low – high  <br>33 – 40 = right 7 low – high<br><br>41 – 44 = 45 up,down,left,right<br>45 = diagonal, facing up left<br>46 = diagonal, facing up right<br>47 = diagonal, facing down left<br>48 = diagonal, facing down right<br><br>49 = 3 or 4-sided diagonal slope, facing up left  <br>50 = 3 or 4-sided diagonal slope, facing up right  <br>51 = 3 or 4-sided diagonal slope, facing down left  <br>52 = 3 or 4-sided diagonal slope, facing down right<br><br>53 = partial block left<br>54 = partial block right<br>55 = partial block top<br>56 = partial block bottom<br>57 = partial block top left corner<br>58 = partial block top right corner<br>59 = partial block bottom right corner<br>60 = partial block bottom left corner<br><br>61 = partial centre block 16×16<br>62 = reserved for future use<br>63 = indicates slope in block above)|
 
 A slope code of 63 indicates not that this block is a slope but that the block above is a slope. This code must always be set in blocks which are underneath slope blocks (except if the block underneath is a diagonal). The ground type of the block with a type 63 slope must be 0 (air). It cannot itself be a slope.
 
@@ -84,23 +84,23 @@ Codes 57-60 are partial corner blocks. These are like normal cube blocks except 
 
 The left, right, top & bottom 16-bit values store a bitmap like this :
 
-|     |     |
-| --- | --- |
-| bits 0-9 | tile graphic number (0-1023) |
-| bit 10 | wall (1 = collide, 0 = no collide) |
-| bit 11 | bullet wall (1 = collide, 0 = no collide) |
-| bit 12 | flat (1 = flat, 0 = not flat) |
-| bit 13 | flip (1 = flip, 0 = no flip ) |
+| Bits      | Notes |
+| ---       | ---   |
+| bits 0-9  | tile graphic number (0-1023) |
+| bit 10    | wall (1 = collide, 0 = no collide) |
+| bit 11    | bullet wall (1 = collide, 0 = no collide) |
+| bit 12    | flat (1 = flat, 0 = not flat) |
+| bit 13    | flip (1 = flip, 0 = no flip ) |
 | bit 14-15 | rotation code (0=0\[Symbol\], 1=90\[Symbol\], 2=180\[Symbol\], 3=270\[Symbol\]) |
 
 The lid 16-bit value stores a bitmap like this :
 
-|     |     |
-| --- | --- |
-| bits 0-9 | tile graphic number (0-1023) |
+| Bits      | Notes |
+| ---       | ---   |
+| bits 0-9  | tile graphic number (0-1023) |
 | bit 10-11 | lighting level (0-3) |
-| bit 12 | flat (1 = flat, 0 = not flat) |
-| bit 13 | flip (1 = flip, 0 = no flip ) |
+| bit 12    | flat (1 = flat, 0 = not flat) |
+| bit 13    | flip (1 = flip, 0 = no flip ) |
 | bit 14-15 | rotation code (0=0\[Symbol\], 1=90\[Symbol\], 2=180\[Symbol\], 3=270\[Symbol\]) |
 
 _tile graphic number_ simply indicates which of the possible 1024 tile graphics to draw on this surface. It serves as an index into the tile information in the style file. A value of 0 means leave it blank. 992-1022 are reserved for internal use by the game engine. 1023 is used as a dummy tile number to mark 3-sided diagonal slopes.
@@ -177,11 +177,11 @@ struct compressed_map
 
 ## base
 
-– a 2D array of 16-bit/32-bit unsigned ints, where each int stores a word/dword offset into _column_ – that is, the index of the start of the column which sits at that square on the ground.
+a 2D array of 16-bit/32-bit unsigned ints, where each int stores a word/dword offset into _column_ – that is, the index of the start of the column which sits at that square on the ground.
 
 ## column
 
-– a variable length array of words/dwords. For each column, the format is:
+a variable length array of words/dwords. For each column, the format is:
 
 CMAP version:
 
@@ -216,7 +216,7 @@ In a CMAP, there is a limit of 65536 words of column data. In a DMAP, the limit 
 
 ## block
 
-– a variable length array of _block_info_ structures, containing every distinct combination of faces & types required for the level. Each individual block is addressed by its block number.
+a variable length array of _block_info_ structures, containing every distinct combination of faces & types required for the level. Each individual block is addressed by its block number.
 
 Note that block 0 is always all zero – it represents an air block with no graphics.
 
@@ -251,29 +251,29 @@ _name_ is a variable-length string whose length is stored in _name_length_. Vali
 
 Valid values of the _zone_type_ field are :
 
-|     |     |
-| --- | --- |
-| 0   | general purpose |
-| 1   | navigation |
-| 2   | traffic light |
-| 3   | unused |
-| 4   | unused |
-| 5   | arrow blocker |
-| 6   | railway station (platform) |
-| 7   | bus stop (pavement) |
-| 8   | general trigger |
-| 9   | unused |
-| 10  | information |
-| 11  | railway station entry point |
-| 12  | railway station exit point |
-| 13  | railway stop point |
-| 14  | gang |
-| 15  | local navigation |
-| 16  | restart |
-| 17  | unused |
-| 18  | unused |
-| 19  | unused |
-| 20  | arrest restart |
+| Value | Notes |
+| ---   | ---   |
+| 0     | general purpose |
+| 1     | navigation |
+| 2     | traffic light |
+| 3     | unused |
+| 4     | unused |
+| 5     | arrow blocker |
+| 6     | railway station (platform) |
+| 7     | bus stop (pavement) |
+| 8     | general trigger |
+| 9     | unused |
+| 10    | information |
+| 11    | railway station entry point |
+| 12    | railway station exit point |
+| 13    | railway stop point |
+| 14    | gang |
+| 15    | local navigation |
+| 16    | restart |
+| 17    | unused |
+| 18    | unused |
+| 19    | unused |
+| 20    | arrest restart |
 
 _general purpose_ zones are used simply to mark an area so that it can be referred to by that name in mission scripts.
 
@@ -467,59 +467,60 @@ Any program which both loads and saves map files must make sure that all chunks 
 
 Any program which saves map data must ensure that the compressed map is uptodate with respect to the uncompressed map.
 
-The file header looks like this :
+## Map File Header
+The file header looks like this:
 
-| **map file header** |     |     |
-| --- | --- | --- |
-| name | size | notes |
-| file_type | Char\[4\] | “GBMP” – code for GBH map file |
-| version_code | UInt16 | – map file format version – currently 500 |
+| name                | size      | notes |
+| ---                 | ---       | --- |
+| file_type           | Char\[4\] | “GBMP” – code for GBH map file |
+| version_code        | UInt16    | – map file format version – currently 500 |
 
-Each chunk in the file is preceded by a header which looks like this :
 
-| **chunk header** |     |     |
-| --- | --- | --- |
-| name | size | notes |
-| chunk_type | Char\[4\] | code name for the chunk type |
-| chunk_size | UInt32 | size of the chunk in bytes (not including this header) |
+## Chunk Header
+Each chunk in the file is preceded by a header which looks like this:
 
-The chunks in the map file are :
+| name             | size      | notes |
+| ---              | ---       | ---   |
+| chunk_type       | Char\[4\] | code name for the chunk type |
+| chunk_size       | UInt32    | size of the chunk in bytes (not including this header) |
 
-| **map chunks** |     |
-| --- | --- |
-| chunk name | description |
-| UMAP | uncompressed map |
-| CMAP | compressed map (16-bit) |
-| DMAP | compressed map (32-bit) |
-| ZONE | map zones |
-| MOBJ | map objects |
-| PSXM | PSX mapping table |
-| ANIM | tile animation |
-| LGHT | Lights |
-| RGEN | Junction List |
+## Map Chunks
+The chunks in the map file are:
+
+| chunk name     | description |
+| ---            | ---         |
+| UMAP           | uncompressed map |
+| CMAP           | compressed map (16-bit) |
+| DMAP           | compressed map (32-bit) |
+| ZONE           | map zones |
+| MOBJ           | map objects |
+| PSXM           | PSX mapping table |
+| ANIM           | tile animation |
+| LGHT           | Lights |
+| RGEN           | Junction List |
 
 # Document Revision List
 
-| Version | Date | Author | Comments |
-| --- | --- | --- | --- |
-| 1.00 | 14/10/1997 | KRH | first draft |
-| 2.00 | 16/10/1997 | KRH | added zones, routes, objects, diagonals & changed map orientation |
-| 3.0 | 23/10/97 | KRH | compression, file format, table of contents |
-| 4.0 | 27/10/97 | KRH | pedroutefinding |
-| 5.0 | 25/02/98 | KRH | cmap&col_info& both sides flat updates,pedrremoved |
-| 5.5 | 25/06/98 | KRH | New zone types, new block types, lid lighting |
-| 5.6 | 30/06/98 | KRH | Correct zone types |
-| 6.0 | 09/07/98 | KRH | add PSXM chunk |
-| 6.1 | 03/09/98 | KRH | add gang zones & local navigation zones, relax rule on unique zone names |
-| 6.2 | 09/09/98 | KRH | add restart zones |
-| 6.3 | 17/09/98 | KRH | add tile animation |
-| 6.4 | 25/09/98 | KRH | changed tile animation format |
-| 6.5 | 17/12/98 | KRH | partial centre blocks, inversediagslopes, no rotation on slope sides, railway setup |
-| 7.0 | 07/01/99 | KRH | add lighting information & change fixed point format to 1.8.7 |
-| 7.5 | 26/01/99 | KRH | change roadblocks & add animated lights |
-| 7.6 | 02/02/99 | KRH | diagonals collision |
-| 7.7 | 23/02/99 | BB  | Junction list chunk info added |
-| 7.8 | 01/04/99 | KRH | arrest restart zones |
-| 8.0 | 14/06/99 | KRH | DMAPs & shading level added, roadblocks & routes removed |
-| 8.1 | 24/06/99 | KRH | remove remap animation |
-| 8.2 | 18/08/99 | KRH | arrow blocker zones |
+| Version | Date       | Author | Comments |
+| ---     | ---        | ---    | --- |
+| 1.00    | 14/10/1997 | KRH    | first draft |
+| 2.00    | 16/10/1997 | KRH    | added zones, routes, objects, diagonals & changed map orientation |
+| 3.0     | 23/10/97   | KRH    | compression, file format, table of contents |
+| 4.0     | 27/10/97   | KRH    | pedroutefinding |
+| 5.0     | 25/02/98   | KRH    | cmap&col_info& both sides flat updates,pedrremoved |
+| 5.5     | 25/06/98   | KRH    | New zone types, new block types, lid lighting |
+| 5.6     | 30/06/98   | KRH    | Correct zone types |
+| 6.0     | 09/07/98   | KRH    | add PSXM chunk |
+| 6.1     | 03/09/98   | KRH    | add gang zones & local navigation zones, relax rule on unique zone names |
+| 6.2     | 09/09/98   | KRH    | add restart zones |
+| 6.3     | 17/09/98   | KRH    | add tile animation |
+| 6.4     | 25/09/98   | KRH    | changed tile animation format |
+| 6.5     | 17/12/98   | KRH    | partial centre blocks, inversediagslopes, no rotation on slope sides, railway setup |
+| 7.0     | 07/01/99   | KRH    | add lighting information & change fixed point format to 1.8.7 |
+| 7.5     | 26/01/99   | KRH    | change roadblocks & add animated lights |
+| 7.6     | 02/02/99   | KRH    | diagonals collision |
+| 7.7     | 23/02/99   | BB     | Junction list chunk info added |
+| 7.8     | 01/04/99   | KRH    | arrest restart zones |
+| 8.0     | 14/06/99   | KRH    | DMAPs & shading level added, roadblocks & routes removed |
+| 8.1     | 24/06/99   | KRH    | remove remap animation |
+| 8.2     | 18/08/99   | KRH    | arrow blocker zones |

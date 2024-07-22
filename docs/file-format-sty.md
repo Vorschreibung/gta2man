@@ -3,7 +3,7 @@ GTA2 Style STY graphics file format
 
 GBH Style Format  
 Version 4.6  
-16th November, 1999  
+16th November 1999  
 ©1997-1999 DMA Design Ltd  
 
 [TOC]
@@ -215,18 +215,18 @@ _wreck_ is the wreck graphic number to use when this car is wrecked (0-8, or 99 
 
 _rating_ is the quality rating for this car – used to decide how often it is created in different areas of the city. Values are:
 
-|     |     |
-| --- | --- |
-| 1   | bad |
-| 2   | bad x 2 |
-| 3   | bad x 3 |
-| 11  | average |
-| 12  | average x 2 |
-| 13  | average x 3 |
-| 21  | good |
-| 22  | good x 2 |
-| 23  | good x 3 |
-| 99  | not recycled |
+| value | notes |
+| ---   | --- |
+| 1     | bad |
+| 2     | bad x 2 |
+| 3     | bad x 3 |
+| 11    | average |
+| 12    | average x 2 |
+| 13    | average x 3 |
+| 21    | good |
+| 22    | good x 2 |
+| 23    | good x 3 |
+| 99    | not recycled |
 
 _front\_wheel\_offset_ and _rear\_wheel\_offset_ are the distances in pixels from the centre of the car to the front axle, and to the back axle, respectively.
 
@@ -249,16 +249,16 @@ There is one special case here. If _rx_ is greater than 64 (or less than –64) 
 
 _info_flags_ is a bitmap with the following fields:
 
-| bit | value | name | meaning |
-| --- | --- | --- | --- |
-| 0   | 0x01 | ped_jump | 1 if this car is too high for a ped to jump, else 0 |
-| 1   | 0x02 | emerg_lights | 1 if this car has emergency lights (e.g. police car), else 0 |
-| 2   | 0x04 | roof_lights | 1 if this car has roof lights (come on with headlights), else 0 |
-| 3   | 0x08 | cab | 1 if this car can be used as an artic cab, else 0 |
-| 4   | 0x10 | trailer | 1 if this car can be used as an artic trailer, else 0 |
-| 5   | 0x20 | forhire_lights | 1 if this car has forhire lights (e.g. taxi) else 0 |
-| 6   | 0x40 | roof_decal | 1 if this car has a roof decal (e.g. TV van) else 0 |
-| 7   | 0x80 | rear\_emerg\_lights | 1 if this car has rear emergency lights ( else 0 ) |
+| bit | value | name                | meaning |
+| --- | ---   | ---                 | ---     |
+| 0   | 0x01  | ped_jump            | 1 if this car is too high for a ped to jump, else 0 |
+| 1   | 0x02  | emerg_lights        | 1 if this car has emergency lights (e.g. police car), else 0 |
+| 2   | 0x04  | roof_lights         | 1 if this car has roof lights (come on with headlights), else 0 |
+| 3   | 0x08  | cab                 | 1 if this car can be used as an artic cab, else 0 |
+| 4   | 0x10  | trailer             | 1 if this car can be used as an artic trailer, else 0 |
+| 5   | 0x20  | forhire_lights      | 1 if this car has forhire lights (e.g. taxi) else 0 |
+| 6   | 0x40  | roof_decal          | 1 if this car has a roof decal (e.g. TV van) else 0 |
+| 7   | 0x80  | rear\_emerg\_lights | 1 if this car has rear emergency lights ( else 0 ) |
 
 **NOTE**:
 
@@ -268,32 +268,32 @@ _info_flags_ is a bitmap with the following fields:
 
 info\_flags\_2 is a bitmap with the following fields:
 
-| bit | value | name | meaning |
-| --- | --- | --- | --- |
-| 0   | 0x01 | collide_over | 1 if this car can drive over other cars, else 0 |
-| 1   | 0x02 | popup | 1 if this car has popup headlights, else 0 |
+| bit | value | name         | meaning |
+| --- | ---   | ---          | ---     |
+| 0   | 0x01  | collide_over | 1 if this car can drive over other cars, else 0 |
+| 1   | 0x02  | popup        | 1 if this car has popup headlights, else 0 |
 
 * **Car Delta Usage**
 
 Cars are the biggest user of deltas in GBH. They use the deltas for the relevant sprite in a standard order, as follows :
 
-| delta number | usage |
-| --- | --- |
-| 0   | rear right dent |
-| 1   | rear left dent |
-| 2   | front left dent |
-| 3   | front right dent |
-| 4   | windscreen damage |
-| 5   | left brake light |
-| 6   | left headlight |
-| 7-10 | left front door |
-| 11-14 | left back door/FBI light anim |
-| 15  | emerg/rooflights/decal |
-| 16  | emerg lights |
-| 17  | right rear emerg light |
-| 18  | left rear emerg light |
-| 22(mirror) | right brake light |
-| 23(mirror) | right headlight |
+| delta number  | usage |
+| ---           | ---   |
+| 0             | rear right dent |
+| 1             | rear left dent |
+| 2             | front left dent |
+| 3             | front right dent |
+| 4             | windscreen damage |
+| 5             | left brake light |
+| 6             | left headlight |
+| 7-10          | left front door |
+| 11-14         | left back door/FBI light anim |
+| 15            | emerg/rooflights/decal |
+| 16            | emerg lights |
+| 17            | right rear emerg light |
+| 18            | left rear emerg light |
+| 22(mirror)    | right brake light |
+| 23(mirror)    | right headlight |
 | 24-27(mirror) | right front door |
 | 28-31(mirror) | right back door |
 
@@ -352,66 +352,66 @@ Any program which both loads and saves style files must make sure that all chunk
 
 The file header looks like this :
 
-| name | size | notes |
-| --- | --- | --- |
-| file_type | Char\[4\] | “GBST” – code for GBH style file |
-| version_code | UInt16 | – style file format version – currently 600 |
+| name         | size      | notes |
+| ---          | ---       | ---   |
+| file_type    | Char\[4\] | “GBST” – code for GBH style file |
+| version_code | UInt16    | style file format version – currently 600 |
 
 Each chunk in the file is preceded by a header which looks like this :
 
-| name | size | notes |
-| --- | --- | --- |
+| name       | size      | notes |
+| ---        | ---       | ---   |
 | chunk_type | Char\[4\] | code name for the chunk type |
-| chunk_size | UInt32 | size of the chunk in bytes (not including this header) |
+| chunk_size | UInt32    | size of the chunk in bytes (not including this header) |
 
 The chunks in the map file are :
 
 | chunk name | description |
-| --- | --- |
-| PALX | palette index |
-| PPAL | physical palettes |
-| PALB | palette base |
-| TILE | tiles |
-| SPRG | sprite graphics |
-| SPRX | sprite index |
-| SPRB | sprites bases |
-| DELS | delta store |
-| DELX | delta index |
-| FONB | font base |
-| CARI | car info |
-| OBJI | map object info |
-| PSXT | PSX tiles |
-| RECY | car recycling info |
+| ---        | ---         |
+| PALX       | palette index |
+| PPAL       | physical palettes |
+| PALB       | palette base |
+| TILE       | tiles |
+| SPRG       | sprite graphics |
+| SPRX       | sprite index |
+| SPRB       | sprites bases |
+| DELS       | delta store |
+| DELX       | delta index |
+| FONB       | font base |
+| CARI       | car info |
+| OBJI       | map object info |
+| PSXT       | PSX tiles |
+| RECY       | car recycling info |
 
 Note that the chunk system is exactly the same as that used by the GBH map file.
 
 # Document Revision List
 
-| version | date | author | description |
-| --- | --- | --- | --- |
-| 1.00 | 27/10/97 | KRH | first draft |
-| 1.10 | 17/11/97 | KRH | extra sprite types & remap palettes |
-| 1.20 | 19/11/97 | KRH | fonts |
-| 1.30 | 28/11/97 | KRH | EPAL & better base description |
-| 1.40 | 10/02/98 | KRH | sprites in object_info changed |
-| 2.00 | 18/03/98 | KRH | adjust alignment of structures to match PS. Remove tile remaps. Car deltas updated |
-| 2.10 | 22/04/98 | KRH | extra information on door positions, removed EPAL |
-| 2.20 | 12/05/98 | KRH | added user remaps, extra car info |
-| 2.50 | 25/06/98 | KRH | car remap table changed to UInt8,<br><br>added tile remaps |
-| 3.0 | 09/07/98 | KRH & JC | add PSXT chunk |
-| 3.1 | 18/08/98 | KRH | update delta numbers, and add info\_flags to car\_info |
-| 3.2 | 14/09/98 | KRH | add window offset data to car_info |
-| 3.3 | 17/09/98 | KRH | add forhire\_lights to car info\_flags |
-| 3.4 | 05/11/98 | KRH | 992 tiles |
-| 3.5 | 15/12/98 | KRH | add roof\_decal to car info\_flags & deltas |
-| 3.6 | 05/02/99 | KRH | add rear\_emerg\_lights to car info_flags & deltas |
-| 3.7 | 24/03/99 | KRH | add info\_flags\_2 to car info |
-| 3.8 | 28/04/99 | KRH | add FBI to info\_flags\_2 + wreck to car_info, and update delta numbers |
-| 3.9 | 03/05/99 | KRH | add rating to car_info & change sprite number counting & remove FBI flag |
-| 4.0 | 12/05/99 | KRH | more sprite pages |
-| 4.1 | 02/06/99 | KRH | remove bulletproof flag |
-| 4.2 | 22/06/99 | KRH | add RECY chunk |
-| 4.3 | 29/06/99 | KRH | add collide_over bit |
-| 4.4 | 08/07/99 | KRH | add logo offset to car_info |
-| 4.5 | 12/07/99 | KRH | remove logo offset from car_info |
-| 4.6 | 16/11/99 | KRH | Correct no. virtual palettes per tile (now 1, not 4) |
+| version | date     | author   | description |
+| ---     | ---      | ---      | ---         |
+| 1.00    | 27/10/97 | KRH      | first draft |
+| 1.10    | 17/11/97 | KRH      | extra sprite types & remap palettes |
+| 1.20    | 19/11/97 | KRH      | fonts |
+| 1.30    | 28/11/97 | KRH      | EPAL & better base description |
+| 1.40    | 10/02/98 | KRH      | sprites in object_info changed |
+| 2.00    | 18/03/98 | KRH      | adjust alignment of structures to match PS. Remove tile remaps. Car deltas updated |
+| 2.10    | 22/04/98 | KRH      | extra information on door positions, removed EPAL |
+| 2.20    | 12/05/98 | KRH      | added user remaps, extra car info |
+| 2.50    | 25/06/98 | KRH      | car remap table changed to UInt8,<br><br>added tile remaps |
+| 3.0     | 09/07/98 | KRH & JC | add PSXT chunk |
+| 3.1     | 18/08/98 | KRH      | update delta numbers, and add info\_flags to car\_info |
+| 3.2     | 14/09/98 | KRH      | add window offset data to car_info |
+| 3.3     | 17/09/98 | KRH      | add forhire\_lights to car info\_flags |
+| 3.4     | 05/11/98 | KRH      | 992 tiles |
+| 3.5     | 15/12/98 | KRH      | add roof\_decal to car info\_flags & deltas |
+| 3.6     | 05/02/99 | KRH      | add rear\_emerg\_lights to car info_flags & deltas |
+| 3.7     | 24/03/99 | KRH      | add info\_flags\_2 to car info |
+| 3.8     | 28/04/99 | KRH      | add FBI to info\_flags\_2 + wreck to car_info, and update delta numbers |
+| 3.9     | 03/05/99 | KRH      | add rating to car_info & change sprite number counting & remove FBI flag |
+| 4.0     | 12/05/99 | KRH      | more sprite pages |
+| 4.1     | 02/06/99 | KRH      | remove bulletproof flag |
+| 4.2     | 22/06/99 | KRH      | add RECY chunk |
+| 4.3     | 29/06/99 | KRH      | add collide_over bit |
+| 4.4     | 08/07/99 | KRH      | add logo offset to car_info |
+| 4.5     | 12/07/99 | KRH      | remove logo offset from car_info |
+| 4.6     | 16/11/99 | KRH      | Correct no. virtual palettes per tile (now 1, not 4) |
