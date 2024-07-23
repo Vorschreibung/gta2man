@@ -1,0 +1,67 @@
+name: Release
+on: [workflow_dispatch]
+
+permissions:
+  contents: write
+
+jobs:
+
+  create_release:
+    name: Create Release
+    runs-on: ubuntu-24.04
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      short_sha: ${{ steps.version.outputs.SHORT }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Retrieve version
+        id: version
+        run: |
+          echo "::set-output name=SHORT::$(git rev-parse --short HEAD)"
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release-${{ steps.version.outputs.SHORT }}
+          release_name: Release ${{ steps.version.outputs.SHORT }}
+          body: ""
+          draft: false
+          prerelease: false
+
+  release_assets:
+    name: Release assets
+    needs: create_release
+    strategy:
+      matrix:
+        os:
+          - { id: ubuntu-24.04, bin_ext: "", arch: "windows_i686" }
+    runs-on: ${{ matrix.os.id }}
+    steps:
+      # {
+      - name: Install Dependencies
+        run: sudo apt-get install -y binutils-mingw-w64-i686 gcc-mingw-w64-i686
+
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+
+      - uses: iffy/install-nim@v5
+        with:
+          version: 2.0.2
+
+      - name: Build gta2man
+        run: make build
+      # }
+
+      - name: Upload release assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_name: nosh-${{ needs.create_release.outputs.short_sha }}-${{ matrix.os.arch }}${{ matrix.os.bin_ext }}
+          asset_path: ./nosh${{ matrix.os.bin_ext }}
+          asset_content_type: application/octet-stream
