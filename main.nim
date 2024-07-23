@@ -15,6 +15,7 @@ import ./edit.nim
 import ./facts.nim as facts
 import ./gui.nim
 import ./mmpfile.nim
+import ./various.nim
 from ./compile.nim import compile
 from ./quickstart.nim import quickstart, resetQuickstart
 
@@ -80,8 +81,16 @@ proc main =
       option("-t", "--to")
       help("Install a packaged map, pass path to a .zip file.")
       run:
-        let toPath = if opts.to != "": opts.to else: "./foo"
-        mmpFile.install(opts.zip_file, toPath)
+        let toPath = if opts.to != "": opts.to else: (os.parentDir(cfg.config.gamepath) / "data")
+
+        if not os.dirExists(toPath):
+          die(fmt"Target direction doesn't exist: {toPath}")
+
+        try:
+          mmpFile.install(opts.zip_file, toPath)
+        except Exception as e:
+          echoErr fmt"Failed to copy '{opts.zip_file}' to '{toPath}'"
+          raise e
 
     command("map-package"):
       arg("mmp-file")

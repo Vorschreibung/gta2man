@@ -12,6 +12,10 @@ proc echoErr*(msg: string) =
   writeLine(stderr, "> " & msg)
   flushFile(stderr)
 
+proc die*(msg: string) =
+  echoErr(msg)
+  quit(1)
+
 # mostly copied from https://github.com/nim-lang/Nim/blob/version-1-6/lib/pure/osproc.nim#L1575 but supports passing args and skips shell
 proc sh*(
     cmd: string,
