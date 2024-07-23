@@ -2,8 +2,11 @@
 ---
 A collection of tools around GTA2, compiles for WIN32.
 
-- [Notes](./NOTES.md)  
-- [Caveats](./CAVEATS.md)  
+Also see:
+- [GTA2 Notes](./NOTES.md)
+- [GTA2 Caveats](./CAVEATS.md)
+- [Official GMP Documentation](./docs/file-format-gmp.md)
+- [Official STY Documentation](./docs/file-format-sty.md)
 
 # Usage
 Running `gta2man` pops up a GUI (WIP) that's supposed to eventually become a
